@@ -39,3 +39,7 @@ do
 done
 
 unset config_files
+
+[ -s "/home/ubuntu/.dnx/dnvm/dnvm.sh" ] && . "/home/ubuntu/.dnx/dnvm/dnvm.sh" # Load dnvm
+
+[ -s "/home/ubuntu/.k/kvm/kvm.sh" ] && . "/home/ubuntu/.k/kvm/kvm.sh" # Load kvm
