@@ -25,11 +25,14 @@ bind - split-window -v
 # Make the current window the first window
 bind T swap-window -t 1
 
-# map Vi movement keys as pane movement keys
+# map Vi movements
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
+set-window-option -g mode-keys vi
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
 
 # and use C-h and C-l to cycle thru panes
 bind -r C-h select-window -t :-
