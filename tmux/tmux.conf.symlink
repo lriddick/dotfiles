@@ -1,9 +1,10 @@
+set -g default-command zsh
 set -g default-terminal "screen-256color"
 
 # set Ctrl-a as the default prefix key combination
 # and unbind C-b to free it up
-set -g prefix C-a
 unbind C-b
+set -g prefix C-a
 
 # use send-prefix to pass C-a through to application
 bind C-a send-prefix
