@@ -45,3 +45,5 @@ do
 done
 
 unset config_files
+
+[ -s "/home/cabox/.dnx/dnvm/dnvm.sh" ] && . "/home/cabox/.dnx/dnvm/dnvm.sh" # Load dnvm

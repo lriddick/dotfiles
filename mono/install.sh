@@ -19,6 +19,3 @@ sudo make install
 sudo rm -rf /usr/local/src/libuv-1.4.2 && cd ~/
 sudo ldconfig
 
-# DVM
-sudo apt-get install unzip
-curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
