@@ -46,11 +46,11 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'nosami/OmniSharp'
 NeoBundle 'OrangeT/vim-csharp'
-"NeoBundle 'marijnh/tern_for_vim'         " javascript completion
 
 " Source Control
 NeoBundle 'tpope/vim-fugitive'             " Git Integration
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'wakatime/vim-wakatime'
 
 " Data
 NeoBundle 'vim-scripts/dbext.vim'
@@ -110,7 +110,7 @@ autocmd BufRead,BufNewFile *.spark set filetype=aspnet.html syntax=aspx
 try
   source ~/.vimrc-dbext
 catch
-  :echo "No database connection defined"
+  " :echo "No database connection defined"
 endtry
 " ============================== UNITE CONFIG ==================================
 
@@ -142,73 +142,13 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
   \ }
 
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 " let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsExpandTrigger="<c-j>"
 
-nnoremap <F5> :Dispatch<CR>
-
-" ============================== NEOCOMPLETE ==============================
-" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
-"" Use neocomplete.
-"let g:neocomplete#enable_at_startup = 1
-"" Use smartcase.
-"let g:neocomplete#enable_smart_case = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-"let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-"" Define dictionary.
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
-
-"" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-"    let g:neocomplete#keyword_patterns = {}
-"endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-"" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  return neocomplete#close_popup() . "\<CR>"
-"  " For no inserting <CR> key.
-"  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"endfunction
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplete#close_popup()
-"inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-"" Enable omni completion.
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-"" Enable heavy omni completion.
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"  let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-
-"let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+nnoremap <F5> :Dispatch!<CR>
 
 " ============================== OMNISHARP CONFIG ==============================
 "let g:OmniSharp_server_type = 'roslyn'
@@ -236,7 +176,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 "don't autoselect first item in omnicomplete, show if only one item (for preview)
 "remove preview if you don't want to see any documentation whatsoever.
 set completeopt=longest,menuone,preview
-" Fetch full documentation during omnicomplete requests. 
+" Fetch full documentation during omnicomplete requests.
 " There is a performance penalty with this (especially on Mono)
 " By default, only Type/Method signatures are fetched. Full documentation can still be fetched when
 " you need it with the :OmniSharpDocumentation command.
@@ -249,7 +189,7 @@ set splitbelow
 " Synchronous build (blocks Vim)
 " autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
 " Builds can also run asynchronously with vim-dispatch installed
- autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuildAsync<cr>
+ autocmd FileType cs nnoremap <leader>osb :wa!<cr>:OmniSharpBuildAsync<cr>
 
 " The following commands are contextual, based on the current cursor position.
 
@@ -264,6 +204,10 @@ nnoremap <leader>x  :OmniSharpFixIssue<cr>
 nnoremap <leader>fx :OmniSharpFixUsings<cr>
 nnoremap <leader>tt :OmniSharpTypeLookup<cr>
 nnoremap <leader>dc :OmniSharpDocumentation<cr>
+"navigate up by method/property/field
+autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
+"navigate down by method/property/field
+autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
 
 " Get Code Issues and syntax errors
 let g:syntastic_cs_checkers = ['syntax', 'issues']
