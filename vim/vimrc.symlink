@@ -19,6 +19,9 @@ set listchars=tab:→→\,eol:¬
 noremap <Leader>vim :e ~/.vimrc<CR>
 noremap <Leader>tmux :e ~/.tmux.conf<CR>
 noremap <Leader>sws :StripWhitespace<CR>
+noremap <Leader>ql :copen<CR>
+noremap <Leader>vql :vert copen<CR>
+noremap <Leader>cql :ccl<CR>
 
 " ================================== PLUGINS ==================================
 
@@ -149,6 +152,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsExpandTrigger="<c-j>"
 
 nnoremap <F5> :Dispatch!<CR>
+nnoremap <F9> :Dispatch<CR>
 
 " ============================== OMNISHARP CONFIG ==============================
 "let g:OmniSharp_server_type = 'roslyn'
