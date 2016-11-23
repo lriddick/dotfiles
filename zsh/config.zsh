@@ -3,7 +3,7 @@ export CLICOLOR=true
 
 fpath=($DOTFILES/zsh/functions $fpath)
 
-autoload -U $DOTFILES/zsh/functions/*(:t)
+#autoload -U $DOTFILES/zsh/functions/*(:t)
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
